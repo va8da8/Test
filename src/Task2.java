@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Scanner;
 
 /*
@@ -24,7 +25,7 @@ import java.util.Scanner;
 2 - точка снаружи
 
 В ТЗ ОШИБКА!!! ЕСЛИ "Количество точек от 1 до 100", ТО ОТВЕТ НЕ МОЖЕТ НАЧИНАТЬСЯ "Соответствия ответов:
-0 - точка лежит на окружности", ОН БУДЕТ НАЧИНАТЬСЯ С 1.
+0 - точка лежит на окружности", ОН НАЧИНАЕТСЯ С 1.
 */
 
 class Task2 {
@@ -32,18 +33,20 @@ class Task2 {
         int i;
         File f1 = new File(args[0]);
         Scanner s1 = new Scanner(f1);
+        s1.useLocale(Locale.US);
         float x, y, r;
-        while (s1.hasNext()) {
-            x = s1.nextInt();
-            y = s1.nextInt();
-            r = s1.nextInt();
+        while (s1.hasNextFloat()) {
+            x = s1.nextFloat();
+            y = s1.nextFloat();
+            r = s1.nextFloat();
             File f2 = new File(args[1]);
             Scanner s2 = new Scanner(f2);
+            s2.useLocale(Locale.US);
             for (i = 1; i <=100; i++) {
                 if (i == 101) break;
                 while (s2.hasNext()) {
                     String a1 = s2.next(), b1 = s2.next();
-                    float a2 = Integer.parseInt(a1), b2 = Integer.parseInt(b1);
+                    float a2 = Float.parseFloat(a1), b2 = Float.parseFloat(b1);
                     if ((a2 - x) * (a2 - x) + (b2 - y) * (b2 - y) == r * r) {
                         System.out.println(i + " - точка лежит на окружности ");
                         i++;
